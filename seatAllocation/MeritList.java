@@ -6,7 +6,7 @@ import java.util.Comparator;
 import java.util.List;
 
 public class MeritList {
-	List<Candidate> meritList = new ArrayList<Candidate>();
+	Candidate meritList[];
 	MeritList(ArrayList<Candidate> a, final int k){
     	Collections.sort(a, new Comparator<Candidate>() {
             public int compare(Candidate p1, Candidate p2) {
@@ -15,7 +15,14 @@ public class MeritList {
         });
     	for(int i=0; i<a.size(); i++){
     		Candidate c = a.get(i);
-    		if (c.rank[k]!=0) meritList.add(c);
+    		if (c.rank[k]!=0) a.remove(i);
     	}
+    	meritList = new Candidate[a.size()];
     }
+	int size(){
+		return meritList.length;
+	}
+	public Candidate element(int i){
+		return meritList[i];
+	}
 }

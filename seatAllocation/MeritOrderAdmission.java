@@ -1,11 +1,14 @@
 package seatAllocation;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 public class MeritOrderAdmission {
-    List<VirtualProgramme> progList = new ArrayList<VirtualProgramme>();
+    HashMap<String,int[]> progList;
     MeritList mlistGen;
     MeritList mlistOBC;
     MeritList mlistSC;
@@ -14,10 +17,12 @@ public class MeritOrderAdmission {
     MeritList mlistOBC_pd;
     MeritList mlistSC_pd;
     MeritList mlistST_pd;
-    HashSet<Candidate> choiceList;
+    HashMap<Candidate,String> choiceList;
     
     MeritOrderAdmission(ArrayList<VirtualProgramme> a){
-    	progList = a;
+    	for(int i=0; i<a.size(); i++){
+    		progList.put(a.get(i).id, a.get(i).availableSeat);
+    	}
     }
     
     public void createMeritList(ArrayList<Candidate> a){
@@ -31,11 +36,19 @@ public class MeritOrderAdmission {
     	mlistST_pd = new MeritList(a,7);
     }
     
-    public void update(List<Candidate> a){ // 
-    	choiceList=(HashSet<Candidate>) a;
+    public void update(ArrayList<Candidate> a){ // 
+    	for(int i=0; i<a.size(); i++){
+    		choiceList.put(a.get(i), a.get(i).preferenceList);
+    	}
     }
     
    	public void Allot(){
-   		
+   		for(int i=0; i<mlistGen.size(); i++){
+   			Candidate c = mlistGen.element(i);
+   			if(choiceList.containsKey(c)){
+   				String str = choiceList.get(c);
+   				while()
+   			}
+   		}
    	}
 }

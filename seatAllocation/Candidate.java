@@ -34,7 +34,7 @@ public class Candidate {
 	String preferenceList; //implementation left
 	int rank[]; //implementation left
 	Candidate (String id, char ctg1, boolean pd1, boolean ds1, boolean indian1){
-		if(true) uid = id; //check that id is unique
+		if(true) uid = id; //check inside if that id is unique
 		ctg = ctg1;
 		pd = pd1;
 		ds = ds1;
