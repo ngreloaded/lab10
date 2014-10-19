@@ -17,7 +17,8 @@ public class MeritOrderAdmission {
     MeritList mlistOBC_pd;
     MeritList mlistSC_pd;
     MeritList mlistST_pd;
-    HashMap<Candidate,String> choiceList;
+    HashMap<Candidate,Candidate> choiceList;
+    ArrayList<Candidate> candidates;
     
     MeritOrderAdmission(ArrayList<VirtualProgramme> a){
     	for(int i=0; i<a.size(); i++){
@@ -34,21 +35,44 @@ public class MeritOrderAdmission {
     	mlistOBC_pd = new MeritList(a,5);
     	mlistSC_pd = new MeritList(a,6);
     	mlistST_pd = new MeritList(a,7);
+    	candidates = a;
     }
     
     public void update(ArrayList<Candidate> a){ // 
     	for(int i=0; i<a.size(); i++){
-    		choiceList.put(a.get(i), a.get(i).preferenceList);
+    		choiceList.put(a.get(i), a.get(i));
     	}
     }
     
-   	public void Allot(){
-   		for(int i=0; i<mlistGen.size(); i++){
+   	public void allot(){
+   		for(int i=0; i<mlistGen.size(); i++){ // 7 similar structures needed.
    			Candidate c = mlistGen.element(i);
    			if(choiceList.containsKey(c)){
-   				String str = choiceList.get(c);
-   				while()
+   				Candidate c1 = choiceList.get(c);
+   				if(c1.allocated) continue;
+   				String str = c1.preferenceList;
+   				int a = str.indexOf('_');
+   				while(a>-1){
+   					int a1 = progList.get(str.substring(0,a))[0];// last 0 for gen category.
+   					if(a1>0){
+   						a1--;
+   						c1.allocated = true;
+   						c1.bid = str.substring(0,a);
+   						break;
+   					}
+   					str.substring(a+1);
+   					a = str.indexOf('_');
+   					if (a==-1){
+   						c1.allocated = false;
+   					}
+   				}
    			}
+   		}
+   	}
+   	
+   	public void print(){
+   		for(int i=0; i<candidates.size(); i++){
+   			System.out.println(candidates.get(i).uid + " , " + "candidates.bid"); // risky, depends wgether pass by reference works or not
    		}
    	}
 }

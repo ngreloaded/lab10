@@ -24,21 +24,33 @@ public class Candidate {
 			return false;
 		return true;
 	}
+	
+	
+	
+	
 	String uid;
+	//try to use these unused variables, otherwise remove them.
 	String bid; //id of allocated branch
 	boolean allocated; //seat allocated or not
-	char ctg;
-	boolean pd;
+	char ctg; // useless acoording to ng
+	boolean pd; // useless acoording to ng
 	boolean ds;
 	boolean indian;
 	String preferenceList; //implementation left
 	int rank[]; //implementation left
-	Candidate (String id, char ctg1, boolean pd1, boolean ds1, boolean indian1){
+	
+	
+	
+	
+	Candidate (String id, char ctg1, boolean pd1, boolean ds1, boolean indian1, int a[]){
 		if(true) uid = id; //check inside if that id is unique
 		ctg = ctg1;
 		pd = pd1;
 		ds = ds1;
 		indian = indian1;
+		preferenceList=".";
+		rank = a;
+		bid = " -1";
 	}
 	String get_uid(){
 		return uid;
@@ -55,7 +67,7 @@ public class Candidate {
 	boolean get_nationality(){
 		return indian;
 	}
-	void add(){ //add pref
+	void add(){ //add preferences.
 		
 	}
 	// function to find next virtual programme
